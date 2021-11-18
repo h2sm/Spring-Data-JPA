@@ -13,8 +13,8 @@ import java.util.Arrays;
 @ShellComponent
 @RequiredArgsConstructor
 public class CommandShell {
-    private ClientService service;
-    private ConsoleUI ui;
+    private final ClientService service;
+    private final ConsoleUI ui;
     @ShellMethod(value = "get client", key = {"get-cli"})
     public void getClient(@ShellOption int id) {
         var x = service.getByID(id);

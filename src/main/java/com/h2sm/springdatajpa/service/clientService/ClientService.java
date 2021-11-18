@@ -13,9 +13,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional
 public class ClientService implements BaseService<Client> {
-    private ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
 
     @Override
+    @Transactional
     public Client getByID(int id) {
         return clientRepository.getById(id);
     }
