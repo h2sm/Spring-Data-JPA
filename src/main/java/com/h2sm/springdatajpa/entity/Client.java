@@ -1,13 +1,8 @@
 package com.h2sm.springdatajpa.entity;
 import lombok.Data;
 import lombok.SneakyThrows;
-import org.hibernate.annotations.Table;
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;

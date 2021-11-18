@@ -35,12 +35,8 @@ public class CommandShell {
     }
 
     @ShellMethod(value = "add client", key = {"add-cli"})
-    public void addClient(@ShellOption(arity = 3) String[] fullName,
-                          @ShellOption String passport,
-                          @ShellOption String phoneNumber,
-                          @ShellOption String dateOfBirth) {
-
-        service.addClient(fullName,passport,phoneNumber,dateOfBirth);
+    public void addClient() {
+        service.save(getNewClient());
     }
 
     private Client getModifiedClient(Client c){
@@ -56,17 +52,9 @@ public class CommandShell {
     }
 
     private Client getNewClient(){
-
-        ui.say("Обновите имя");
-        c.setFullName(ui.read());
-        ui.say("Обновите паспорт");
-        c.setPassport(ui.read());
-        ui.say("обновите номер телефона");
-        c.setPhoneNumber(ui.read());
-        ui.say("обновите дату рождения: dd-MM-yyyy");
-        c.setDate(ui.read());
-        return c;
-        return
+        ui.say("Введите имя, паспорт, номер телефона и дату рождения в фортмате дд-мм-гггг. После каждого параметра нажимайте энтер");
+        var client = new Client(ui.read(), ui.read(), ui.read(), ui.read());
+        return client;
     }
 
 }
