@@ -1,17 +1,25 @@
 package com.h2sm.springdatajpa.entity;
-
 import lombok.Data;
+import lombok.SneakyThrows;
+import org.hibernate.annotations.Table;
+import org.springframework.data.annotation.Id;
 
-import javax.persistence.*;
-import java.sql.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 @Entity
-@Table(name="client")
+@Table(name="client", schema = "public")
 @Data
-public class Client {
+public class Client implements Serializable {
     @Id
-    @GeneratedValue
-    @Column(name = "client_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "client_id", unique = true, nullable = false)
     private int id;
     @Column(name = "full_name")
     private String fullName;
@@ -22,14 +30,24 @@ public class Client {
     @Column(name = "date_of_birth")
     private Date date_of_birth;
 
-    public Client(String fullName, String passport, String phoneNumber, Date dateOfBirth) {
+    public Client(String fullName, String passport, String phoneNumber, String dateOfBirth) {
         this.fullName=fullName;
         this.passport=passport;
         this.phoneNumber=phoneNumber;
-        this.date_of_birth=dateOfBirth;
+        this.date_of_birth=convert(dateOfBirth);
     }
 
     public Client() {
 
+    }
+    @SneakyThrows
+    private Date convert(String s) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+        var date = formatter.parse(s);
+        return new Date(date.getTime());
+    }
+
+    public void setDate(String date){
+        this.date_of_birth = convert(date);
     }
 }

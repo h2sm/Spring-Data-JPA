@@ -1,9 +1,72 @@
 package com.h2sm.springdatajpa.shell;
 
+import com.h2sm.springdatajpa.entity.Client;
+import com.h2sm.springdatajpa.service.clientService.ClientService;
+import com.h2sm.springdatajpa.service.uiService.ConsoleUI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.shell.standard.ShellComponent;
+import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellOption;
+
+import java.util.Arrays;
 
 @ShellComponent
 @RequiredArgsConstructor
 public class CommandShell {
+    private ClientService service;
+    private ConsoleUI ui;
+    @ShellMethod(value = "get client", key = {"get-cli"})
+    public void getClient(@ShellOption int id) {
+        var x = service.getByID(id);
+        System.out.println(x);
+    }
+
+    @ShellMethod(value = "delete client", key = {"del-cli"})
+    public void deleteClient(@ShellOption int id,
+                             @ShellOption boolean sure) {
+        if (sure) service.delete(id);
+        else System.out.println("You are not sure what ya doing, so no deleting this time");
+
+    }
+    @ShellMethod(value = "modify client", key = {"mod-cli"}) //YYYY-MM-DD
+    public void modifyClient(@ShellOption(value = "--id") int id) {
+        var client = service.getByID(id);
+        service.update(getModifiedClient(client));
+    }
+
+    @ShellMethod(value = "add client", key = {"add-cli"})
+    public void addClient(@ShellOption(arity = 3) String[] fullName,
+                          @ShellOption String passport,
+                          @ShellOption String phoneNumber,
+                          @ShellOption String dateOfBirth) {
+
+        service.addClient(fullName,passport,phoneNumber,dateOfBirth);
+    }
+
+    private Client getModifiedClient(Client c){
+        ui.say("Обновите имя");
+        c.setFullName(ui.read());
+        ui.say("Обновите паспорт");
+        c.setPassport(ui.read());
+        ui.say("обновите номер телефона");
+        c.setPhoneNumber(ui.read());
+        ui.say("обновите дату рождения: dd-MM-yyyy");
+        c.setDate(ui.read());
+        return c;
+    }
+
+    private Client getNewClient(){
+
+        ui.say("Обновите имя");
+        c.setFullName(ui.read());
+        ui.say("Обновите паспорт");
+        c.setPassport(ui.read());
+        ui.say("обновите номер телефона");
+        c.setPhoneNumber(ui.read());
+        ui.say("обновите дату рождения: dd-MM-yyyy");
+        c.setDate(ui.read());
+        return c;
+        return
+    }
+
 }
