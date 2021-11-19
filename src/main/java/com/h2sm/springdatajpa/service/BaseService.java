@@ -1,7 +1,9 @@
 package com.h2sm.springdatajpa.service;
 
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+@Transactional
 public interface BaseService<T> {
     T getByID(int id);
     List<T> getAll();
