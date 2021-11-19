@@ -7,14 +7,22 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 
 @ShellComponent
 @RequiredArgsConstructor
+@Transactional
 public class CommandShell {
     private final ClientService service;
     private final ConsoleUI ui;
+
+    @ShellMethod(value = "get all clients", key = {"get-all"})
+    public void getAllClients(){
+        service.getAll().forEach(System.out::println);
+
+    }
+
     @ShellMethod(value = "get client", key = {"get-cli"})
     public void getClient(@ShellOption int id) {
         var x = service.getByID(id);

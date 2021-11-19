@@ -4,13 +4,17 @@ import com.h2sm.springdatajpa.entity.Client;
 import com.h2sm.springdatajpa.repository.ClientRepository;
 import com.h2sm.springdatajpa.service.BaseService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
+@PersistenceContext
 public class ClientService implements BaseService<Client> {
     private final ClientRepository clientRepository;
 
