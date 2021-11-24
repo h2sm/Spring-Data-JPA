@@ -1,12 +1,13 @@
 package com.h2sm.springdatajpa.entity;
 import lombok.Data;
 import lombok.SneakyThrows;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.*;
 
 @Entity
 @Table(name="client", schema = "public")
@@ -33,7 +34,7 @@ public class Client implements Serializable {
     }
 
     public Client() {
-
+        
     }
     @SneakyThrows
     private Date convert(String s) {

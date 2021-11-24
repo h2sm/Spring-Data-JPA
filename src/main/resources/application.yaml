@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://0.0.0.0:5432/TravelAgency2
+    username: docker
+    password: docker
+  jpa:
+    show-sql: true

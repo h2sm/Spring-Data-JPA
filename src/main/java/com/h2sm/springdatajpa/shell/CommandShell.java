@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @ShellComponent
 @RequiredArgsConstructor
-@Transactional
 public class CommandShell {
     private final ClientService service;
     private final ConsoleUI ui;
@@ -20,7 +19,6 @@ public class CommandShell {
     @ShellMethod(value = "get all clients", key = {"get-all"})
     public void getAllClients(){
         service.getAll().forEach(System.out::println);
-
     }
 
     @ShellMethod(value = "get client", key = {"get-cli"})

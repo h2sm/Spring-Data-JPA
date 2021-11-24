@@ -6,21 +6,21 @@ import com.h2sm.springdatajpa.service.BaseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
-@PersistenceContext
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class ClientService implements BaseService<Client> {
     private final ClientRepository clientRepository;
 
     @Override
-    @Transactional
     public Client getByID(int id) {
+//        var pers = clientRepository.getById(id);
+//        System.out.println(pers);
         return clientRepository.getById(id);
     }
 
