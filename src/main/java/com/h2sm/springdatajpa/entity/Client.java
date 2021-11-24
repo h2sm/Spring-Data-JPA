@@ -1,8 +1,8 @@
 package com.h2sm.springdatajpa.entity;
 import lombok.Data;
 import lombok.SneakyThrows;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Proxy;
+import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
 import java.io.Serializable;

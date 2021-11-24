@@ -3,5 +3,6 @@ spring:
     url: jdbc:postgresql://0.0.0.0:5432/TravelAgency2
     username: docker
     password: docker
+    driver-class-name: org.postgresql.Driver
   jpa:
     show-sql: true

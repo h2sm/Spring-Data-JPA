@@ -4,6 +4,7 @@ import com.h2sm.springdatajpa.entity.Client;
 import com.h2sm.springdatajpa.service.clientService.ClientService;
 import com.h2sm.springdatajpa.service.uiService.ConsoleUI;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.Proxy;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @ShellComponent
 @RequiredArgsConstructor
+
 public class CommandShell {
     private final ClientService service;
     private final ConsoleUI ui;
