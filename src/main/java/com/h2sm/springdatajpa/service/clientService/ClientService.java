@@ -47,6 +47,5 @@ public class ClientService implements BaseService<Client> {
     public void update(Client entity) {
         if (clientRepository.existsById(entity.getId())) save(entity);
         else throw new EntityNotFoundException();
-
     }
 }

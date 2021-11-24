@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @ShellComponent
 @RequiredArgsConstructor
-
 public class CommandShell {
     private final ClientService service;
     private final ConsoleUI ui;

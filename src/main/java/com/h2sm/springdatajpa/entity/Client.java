@@ -1,6 +1,5 @@
 package com.h2sm.springdatajpa.entity;
-import lombok.Data;
-import lombok.SneakyThrows;
+import lombok.*;
 import org.hibernate.annotations.Proxy;
 import org.springframework.context.annotation.Bean;
 
@@ -11,7 +10,9 @@ import java.util.*;
 
 @Entity
 @Table(name="client", schema = "public")
-@Data
+@Getter
+@Setter
+@ToString()
 public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
